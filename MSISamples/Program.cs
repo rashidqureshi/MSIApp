@@ -28,7 +28,6 @@ namespace ConsoleApplication
            else
            {
                 RunSample(tenantId, port, subscriptionId);
-                //RunSample("72f988bf-86f1-41af-91ab-2d7cd011db47", "50342", "04045c26-6013-4b2f-89b7-7e6620e4cefc");
            }
         }
 
