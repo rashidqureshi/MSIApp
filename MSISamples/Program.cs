@@ -111,7 +111,7 @@ namespace ConsoleApplication
             Console.WriteLine(String.Format(format, items));
         }
 
-            private struct Token
+        private struct Token
         {
             public string bearerToken;
             public DateTime expiryTime;
