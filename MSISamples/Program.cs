@@ -79,7 +79,7 @@ namespace ConsoleApplication
                             resourceClient = new ResourceManagementClient(credentials);
                         } else
                         {
-                            throw e;
+                            throw;
                         }
                     }
                 }
