@@ -50,7 +50,7 @@ namespace ConsoleApplication
             var credentials = new TokenCredentials(token.bearerToken);
             var resourceClient = new ResourceManagementClient(credentials);
 
-            // This while is to simulate a long running task that uses MSI token to access an Azure resource
+            // This while loop is to simulate a long running task that uses MSI token to access an Azure resource
             while (true)
             {
                 // Re-try the operation if an exception is thrown due to expired token
