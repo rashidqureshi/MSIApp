@@ -42,13 +42,14 @@ namespace ConsoleApplication
 
             Token token = getToken(address);
 
-            Write("Access token for ARM -");
+            Write("Access token for ARM");
             Write("Token = {0}",token.bearerToken);
             Write("Expiry Time = {0}",token.expiryTime.ToString());
 
             // Intialize SDK using the token
             var credentials = new TokenCredentials(token.bearerToken);
             var resourceClient = new ResourceManagementClient(credentials);
+            resourceClient.SubscriptionId = subscriptionId;
 
             // This while loop is to simulate a long running task that uses MSI token to access an Azure resource
             while (true)
@@ -58,8 +59,6 @@ namespace ConsoleApplication
                 {
                     try
                     {
-                        resourceClient.SubscriptionId = subscriptionId;
-
                         // List the resource group where VM has access to 
                         Write("Listing resource groups:");
                         resourceClient.ResourceGroups.List().ToList().ForEach(rg =>
@@ -77,6 +76,7 @@ namespace ConsoleApplication
                             token = getToken(address);
                             credentials = new TokenCredentials(token.bearerToken);
                             resourceClient = new ResourceManagementClient(credentials);
+                            resourceClient.SubscriptionId = subscriptionId;
                         } else
                         {
                             throw;
