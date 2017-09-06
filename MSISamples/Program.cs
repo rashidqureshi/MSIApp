@@ -19,26 +19,23 @@ namespace ConsoleApplication
     
         public static void Main(string[] args)
         {
-            var tenantId = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
             var subscriptionId = Environment.GetEnvironmentVariable("AZURE_SUBSCRIPTION_ID");
             var port = Environment.GetEnvironmentVariable("MSI_PORT");
-           if (new List<string> { tenantId, port, subscriptionId }.Any(i => String.IsNullOrEmpty(i)))
+           if (new List<string> { port, subscriptionId }.Any(i => String.IsNullOrEmpty(i)))
            {
-                Console.WriteLine("Please provide ENV vars for AZURE_TENANT_ID, MSI_PORT and AZURE_SUBSCRIPTION_ID.");
+                Console.WriteLine("Please provide ENV vars for MSI_PORT and AZURE_SUBSCRIPTION_ID.");
            }
            else
            {
-                RunSample(tenantId, port, subscriptionId);
-           }
+                RunSample(port, subscriptionId);
+            }
         }
 
         public static void RunSample(string tenantId, string port, string subscriptionId)
         {
-            string authority = "https://login.microsoftonline.com/" + tenantId;
             string address = string.Format("http://localhost:{0}/oauth2/token?resource={1}&authority={2}",
                port,
-               Uri.EscapeDataString("https://management.azure.com/"),
-               Uri.EscapeDataString(authority));
+               Uri.EscapeDataString("https://management.azure.com/"));
 
             Token token = getToken(address);
 
@@ -92,6 +89,7 @@ namespace ConsoleApplication
         {
             Token token;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
+            request.Headers.Add("Metadata","true"); 
             StreamReader objReader = new StreamReader(request.GetResponse().GetResponseStream());
             
             var jss = new JavaScriptSerializer();
