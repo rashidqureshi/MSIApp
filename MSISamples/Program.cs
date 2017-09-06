@@ -33,7 +33,7 @@ namespace ConsoleApplication
 
         public static void RunSample(string tenantId, string port, string subscriptionId)
         {
-            string address = string.Format("http://localhost:{0}/oauth2/token?resource={1}&authority={2}",
+            string address = string.Format("http://localhost:{0}/oauth2/token?resource={1}",
                port,
                Uri.EscapeDataString("https://management.azure.com/"));
 
