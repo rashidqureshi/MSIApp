@@ -89,7 +89,7 @@ namespace ConsoleApplication
         {
             Token token;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(address);
-            request.Headers.Add("Metadata","true"); 
+            //request.Headers.Add("Metadata","true"); 
             StreamReader objReader = new StreamReader(request.GetResponse().GetResponseStream());
             
             var jss = new JavaScriptSerializer();
