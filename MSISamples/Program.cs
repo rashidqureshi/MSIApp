@@ -31,7 +31,7 @@ namespace ConsoleApplication
             }
         }
 
-        public static void RunSample(string tenantId, string port, string subscriptionId)
+        public static void RunSample(string port, string subscriptionId)
         {
             string address = string.Format("http://localhost:{0}/oauth2/token?resource={1}",
                port,
