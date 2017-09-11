@@ -76,7 +76,7 @@ namespace ConsoleApplication
                             resourceClient.SubscriptionId = subscriptionId;
                         } else
                         {
-                            throw;
+                            throw; address
                         }
                     }
                 }
